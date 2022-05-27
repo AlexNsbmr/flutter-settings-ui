@@ -307,11 +307,11 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
   Color calculateBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.light
           ? pressed
-              ? widget.tileColor ?? iosPressedTileColorLight
-              : Colors.white
+              ? (widget.tileColor?.withOpacity(0.7) ?? iosPressedTileColorLight)
+              : (widget.tileColor ?? Colors.white)
           : pressed
-              ? widget.tileColor?.withOpacity(0.7) ?? iosPressedTileColorDark
-              : iosTileDarkColor;
+              ? (widget.tileColor?.withOpacity(0.7) ?? iosPressedTileColorDark)
+              : (widget.tileColor ?? iosTileDarkColor);
 
   Color? _iconColor(ThemeData theme, ListTileThemeData tileTheme) {
     if (tileTheme.selectedColor != null) {
