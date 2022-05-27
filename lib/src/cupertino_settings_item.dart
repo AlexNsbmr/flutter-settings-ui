@@ -35,6 +35,7 @@ class CupertinoSettingsItem extends StatefulWidget {
     this.subtitleTextStyle,
     this.valueTextStyle,
     this.switchActiveColor,
+    this.tileColor,
   })  : assert(labelMaxLines == null || labelMaxLines > 0),
         assert(subtitleMaxLines == null || subtitleMaxLines > 0);
 
@@ -60,6 +61,7 @@ class CupertinoSettingsItem extends StatefulWidget {
   final TextStyle? subtitleTextStyle;
   final TextStyle? valueTextStyle;
   final Color? switchActiveColor;
+  final Color? tileColor;
 
   @override
   State<StatefulWidget> createState() => new CupertinoSettingsItemState();
@@ -305,10 +307,10 @@ class CupertinoSettingsItemState extends State<CupertinoSettingsItem> {
   Color calculateBackgroundColor(BuildContext context) =>
       Theme.of(context).brightness == Brightness.light
           ? pressed
-              ? iosPressedTileColorLight
+              ? widget.tileColor ?? iosPressedTileColorLight
               : Colors.white
           : pressed
-              ? iosPressedTileColorDark
+              ? widget.tileColor?.withOpacity(0.7) ?? iosPressedTileColorDark
               : iosTileDarkColor;
 
   Color? _iconColor(ThemeData theme, ListTileThemeData tileTheme) {
